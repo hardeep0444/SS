@@ -4,18 +4,20 @@
 
 int main()
 {
-	int fd[2];
+	
 	int fd2[2];
-	pipe(fd);
 	pipe(fd2);
+	
 	if(!fork())
 	{ //child (C1) of main parent(P)
+		int fd[2];
+		pipe(fd);
 		
 		if(!fork())
 		{ //child (C2) of child(C1)
 			dup2(fd[1],1);
 			close(fd[0]);
-			execl("bin/ls","ls","-l",NULL);
+			execl("/bin/ls","ls","-l",NULL);
 		}
 		else	
 		{
