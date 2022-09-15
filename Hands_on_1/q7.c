@@ -8,9 +8,9 @@
 void main (){
 	char a[20];
 	char b[20];
-	printf("Enter filename 1:");
+	printf("Enter filename 1 to read from:");
 	scanf("%s", a);
-	printf("Enter filename 2:");
+	printf("Enter filename 2 to write to:");
 	scanf("%s", b);
 
 	char buffer[1024];

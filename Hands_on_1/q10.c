@@ -7,7 +7,7 @@
 #include<unistd.h>
 #include<fcntl.h>
 void main(){
-	int fd = open("file2", O_RDWR);
+	int fd = open("file2", O_RDWR|O_CREAT);
 	if(fd<0){
 		printf("Unable to open file\n");
 		return;
@@ -19,7 +19,7 @@ void main(){
 	write(fd, buf, 10);
 
 	int value = lseek(fd, 10, SEEK_CUR);
-	printf("Return Value : %d\n", value);
+	printf("Return Value of lseek: %d\n", value);
 	printf("Enter next 10 bytes data");
 	scanf("%s",buf);
 	write(fd, buf, 10);

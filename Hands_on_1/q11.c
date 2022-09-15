@@ -8,7 +8,7 @@
 #include<fcntl.h>
 void main (){
 	
-	int fd = open("file1", O_RDWR);
+	int fd = open("file1", O_RDWR|O_CREAT,0744);
 	if(fd<0){
 		printf("Unable to open file\n");
 		return;

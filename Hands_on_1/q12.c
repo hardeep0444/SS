@@ -16,8 +16,5 @@ void main (){
 	}
 
 	int fileMode = fcntl(fd, F_GETFL);
-	printf("File Mode: %d\n",fileMode ); //outputs
-	// // int fd2 = open("source", fileMode);
-	// // fileMode = fcntl(fd2, F_GETFL);
-	// printf("%d\n",fileMode );
+	printf("File Mode: %d\n",fileMode ); 
 }

@@ -4,6 +4,10 @@
 #include<stdio.h>
 #include<fcntl.h>
 #include<string.h>
+#include<sys/stat.h>
+#include<unistd.h>
+#include<sys/types.h>
+	
 void main(){
 	int i=0;
 	int fds[5];

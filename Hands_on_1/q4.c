@@ -2,19 +2,12 @@
 //MT2022047
 
 #include<stdio.h>
-void main(){
-	int fd = fopen("source", "O_RDWR");
-	char ch;
-	if(fd!=-1){
-		do {
-        		ch= fgetc(fd);
-        		printf("%c", ch);
-    		} while (ch != EOF);
- 
-    		fclose(fd);
-	}
-	else{
-		printf("unable to open file");
-	}
+#include<fcntl.h>
+#include<unistd.h>
+
+void main()
+{
+	int fd = open("test.txt",O_EXCL|O_CREAT|O_RDWR,0764);
+	printf("Opened file: %d\n",fd);	
 }
 
