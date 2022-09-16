@@ -5,6 +5,7 @@
 #include<unistd.h>
 #include<fcntl.h>
 #include<sys/types.h>
+#include<sys/wait.h>
 void main(){
 	printf("Process id = %d\n",getpid());
 	
@@ -15,18 +16,19 @@ void main(){
 		if(b){
 			c = fork();
 			if(c){
-				//printf("Waiting for third child\n");
-				waitpid(c);
+				printf("Waiting for second child\n");
+				waitpid(b,NULL,0);
 				printf("Parent Dies: %d \n",getpid());
 				}
 			else
 			{
 
-				sleep(10);
+				//sleep(10);
 				printf("third Child dies %d\n",getpid());
 			}
 		}
 		else{
+			sleep(10);
 			printf("Second Child dies %d\n",getpid());
 		}
 
@@ -34,5 +36,4 @@ void main(){
 	else{
 		printf("First Child dies %d\n",getpid());
 	}
-	
 }

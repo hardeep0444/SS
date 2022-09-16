@@ -19,40 +19,36 @@ void main(){
 
 	
 	struct flock lckdb;
-		lckdb.l_type = F_WRLCK;
+		lckdb.l_type = F_RDLCK;
 		lckdb.l_whence = SEEK_END; //from end
 		lckdb.l_start = -sizeof(db); // go 1 record back
-		lckdb.l_len = 0;
+		lckdb.l_len = sizeof(db);
 		lckdb.l_pid = getpid();
 
 	fcntl(fd, F_SETLK, &lckdb);
-	
 
 	while( read(fd, &db, sizeof(db)) );	//get db updated with the last record
 
 	db2.tkno = db.tkno + 1; 
 	db2.usrid = userid;
 	
-	lckdb.l_type = F_UNLCK; //to UNLOCK the lst record
+	lckdb.l_type = F_UNLCK; //to UNLOCK the last record
 	fcntl(fd, F_SETLK, &lckdb);
 
 	lckdb.l_type = F_WRLCK;
 	lckdb.l_whence = SEEK_END; //from end
-	lckdb.l_start = sizeof(db); // go 1 record back
-	lckdb.l_len = 0;
+	lckdb.l_start = 0; // go 1 record back
+	lckdb.l_len = sizeof(db);
 	lckdb.l_pid = getpid();
 
 	fcntl(fd, F_SETLK, &lckdb);
 
 
 	if(write(fd, &db2, sizeof(db2))>0) //Writing Data
-		printf("\nAlloted Ticket Number: %d\n", db.tkno);
-	
+		printf("\nAlloted Ticket Number: %d\n", db2.tkno);
 	lckdb.l_type = F_UNLCK; //to UNLOCK the lst record
 	fcntl(fd, F_SETLK, &lckdb);
 
 	perror("Status: ");
-	
-
 	close(fd);
 }

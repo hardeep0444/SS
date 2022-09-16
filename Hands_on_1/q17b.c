@@ -28,7 +28,10 @@ void main(){
 
 	
 	if(write(fd, &db2, sizeof(db2))>0) //Writing Data
+	{	lseek(fd,(-1)*sizeof(db2),SEEK_END);
+		read(fd,&db,sizeof(db));
 		printf("\nAlloted Ticket Number: %d\n", db.tkno);
+	}
 	
 	perror("Status: ");
 	

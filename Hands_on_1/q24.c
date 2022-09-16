@@ -6,8 +6,9 @@
 #include<fcntl.h>
 void main(){
 	
-	int cpid = fork();
+	
 	printf("process pid = %d",getpid());
+	int cpid = fork();
 	//int fd = open("src", O_RDWR);
 	if(cpid){
 		printf("Child pid from parent: %d\n", cpid);

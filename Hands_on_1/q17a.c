@@ -12,7 +12,7 @@ void main(){
 		int usrid;
 	}db;
 	
-	int fd = open("ticket_db.txt", O_APPEND);
+	int fd = open("ticket_db.txt", O_APPEND|O_RDWR);
 	
 	db.tkno = 3;
 	db.usrid = 3;

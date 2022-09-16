@@ -5,5 +5,5 @@
 
 void main()
 {
-	execl("q9",NULL);
+	execl("q9","",NULL,NULL);
 }

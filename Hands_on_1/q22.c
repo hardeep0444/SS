@@ -51,5 +51,9 @@ void main()
 		//read(fd,buffer,sizeof(buffer));
 		close(fd);
 	}
+	else
+	{
+		printf("Unable to open the file\n");
+	}
 	
 }
